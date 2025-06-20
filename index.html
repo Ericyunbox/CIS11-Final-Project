@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ethical AI Use for Students</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
       font-family: Arial, sans-serif;
       background-color: #f2f4f8;
@@ -21,22 +24,31 @@
       background: #002f5f;
       display: flex;
       justify-content: center;
-      padding: 10px;
+      flex-wrap: wrap;
     }
-    nav a {
+    nav button {
+      background: none;
+      border: none;
       color: white;
-      margin: 0 15px;
-      text-decoration: none;
+      margin: 10px;
       font-weight: bold;
+      cursor: pointer;
+      font-size: 16px;
     }
-    nav a:hover {
+    nav button:hover {
       text-decoration: underline;
     }
-    main {
+    .tab-content {
+      display: none;
       padding: 20px;
+      animation: fadeIn 0.5s ease-in;
     }
-    section {
-      margin-bottom: 40px;
+    .tab-content.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
     h2 {
       color: #003366;
@@ -53,9 +65,7 @@
       color: white;
       text-align: center;
       padding: 10px;
-      position: relative;
-      bottom: 0;
-      width: 100%;
+      margin-top: 40px;
     }
   </style>
 </head>
@@ -66,50 +76,81 @@
   </header>
 
   <nav>
-    <a href="#why">Why AI Ethics?</a>
-    <a href="#examples">Good vs Bad Use</a>
-    <a href="#tools">Helpful Tools</a>
-    <a href="#quiz">Quick Quiz</a>
+    <button onclick="showTab('why')">Why AI Ethics?</button>
+    <button onclick="showTab('examples')">Good vs Bad Use</button>
+    <button onclick="showTab('tools')">Helpful Tools</button>
+    <button onclick="showTab('quiz')">Quick Quiz</button>
   </nav>
 
   <main>
-    <section id="why">
+    <section id="why" class="tab-content active">
       <h2>Why Does Ethical AI Use Matter?</h2>
       <p>AI tools like ChatGPT, Grammarly, or image generators can help with schoolwork, but using them without thinking can lead to plagiarism, misinformation, or overdependence. Ethical use means using these tools to help you learn — not to cheat or replace your thinking.</p>
+      <p>Misuse of AI can also lead to academic consequences. It's important to understand the impact and responsibility of using AI technology wisely.</p>
     </section>
 
-    <section id="examples">
+    <section id="examples" class="tab-content">
       <h2>Examples of Ethical and Unethical Use</h2>
-      <ul>
-        <li><strong>Ethical:</strong> Using AI to brainstorm ideas or improve grammar.</li>
-        <li><strong>Unethical:</strong> Copying and pasting an AI-generated essay as your own.</li>
-        <li><strong>Ethical:</strong> Asking AI to explain a difficult math concept.</li>
-        <li><strong>Unethical:</strong> Using AI to answer test questions during an exam.</li>
-      </ul>
+      <table border="1" cellpadding="10" style="border-collapse: collapse; background: white;">
+        <thead>
+          <tr style="background-color: #dde6f2;">
+            <th>Ethical Use</th>
+            <th>Unethical Use</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Using AI to brainstorm ideas</td>
+            <td>Submitting AI-generated content as your own</td>
+          </tr>
+          <tr>
+            <td>Using AI to understand complex topics</td>
+            <td>Using AI to answer test questions</td>
+          </tr>
+          <tr>
+            <td>Grammar and spell-check assistance</td>
+            <td>Faking sources or citations</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
 
-    <section id="tools">
+    <section id="tools" class="tab-content">
       <h2>AI Tools and How to Use Them Right</h2>
-      <p>Here are some tools you might use in school, and tips on how to use them responsibly:</p>
       <ul>
-        <li><strong>ChatGPT:</strong> Great for asking questions, but cite if you use any full ideas or explanations.</li>
-        <li><strong>Grammarly:</strong> Helps improve grammar, but don't let it change your entire writing style.</li>
-        <li><strong>Image Generators:</strong> Use for creative projects, but don't claim AI images as your original artwork.</li>
+        <li><strong>ChatGPT:</strong> Ask it to explain ideas, not do your work. Always verify its answers.</li>
+        <li><strong>Grammarly:</strong> Great for improving writing, but don’t rely on it for entire rewrites.</li>
+        <li><strong>DALL·E:</strong> Generate visuals responsibly. Don’t pass AI art off as original unless it’s modified.</li>
+        <li><strong>Perplexity AI / Bing Chat:</strong> Good for quick summaries, but always double-check facts.</li>
       </ul>
+      <p>Tip: Always cite when you use AI-generated content in schoolwork.</p>
     </section>
 
-    <section id="quiz">
+    <section id="quiz" class="tab-content">
       <h2>Quick Quiz: Are You Using AI Ethically?</h2>
       <div class="quiz">
-        <p><strong>Question:</strong> Is it okay to use AI to write your essay, then turn it in without changes?</p>
+        <p><strong>Q1:</strong> Is it okay to copy and paste AI-generated homework?</p>
         <button onclick="alert('Incorrect. That’s considered plagiarism. Always rewrite and cite.')">Yes</button>
         <button onclick="alert('Correct! You should always write in your own words and cite any help you used.')">No</button>
+      </div>
+      <div class="quiz">
+        <p><strong>Q2:</strong> Can AI help you come up with research questions?</p>
+        <button onclick="alert('Correct! Brainstorming help is an ethical use of AI.')">Yes</button>
+        <button onclick="alert('Incorrect. Brainstorming is a helpful and ethical use of AI.')">No</button>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>Created by Eric Xia | CIS 11 Final Project</p>
+    <p>Created by Eric Xia | CIS 11/12 Final Project</p>
   </footer>
+
+  <script>
+    function showTab(tabId) {
+      const tabs = document.querySelectorAll('.tab-content');
+      tabs.forEach(tab => tab.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+    }
+  </script>
 </body>
 </html>
